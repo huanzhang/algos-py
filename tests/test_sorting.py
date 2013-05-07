@@ -2,7 +2,8 @@ import unittest
 import random
 import logging
 from algos.sorting import insertion_sort,\
-        quick_sort, merge_sort, bubble_sort
+        quick_sort, merge_sort, bubble_sort,\
+        selection_sort
 
 class TestInsertionSort(unittest.TestCase):
     def test_sort(self):
@@ -120,3 +121,32 @@ class TestMergeSort(unittest.TestCase):
         input.reverse()
         output = merge_sort.sort(input)
         self.assertEqual(range(100), output)
+
+class TestSelectionSort(unittest.TestCase):
+    def test_sort(self):
+        input = range(100)
+        random.shuffle(input)
+        selection_sort.sort(input)
+        self.assertEqual(range(100), input)
+
+    def test_sort_empty_list(self):
+        input = range(0)
+        selection_sort.sort(input)
+        self.assertEqual(range(0), input)
+
+    def test_sort_one_element_list(self):
+        input = range(1)
+        selection_sort.sort(input)
+        self.assertEqual(range(1), input)
+
+    def test_sort_two_elements_list(self):
+        input = range(2)
+        random.shuffle(input)
+        selection_sort.sort(input)
+        self.assertEqual(range(2), input)
+
+    def test_sort_inverted_list(self):
+        input = range(100)
+        input.reverse()
+        selection_sort.sort(input)
+        self.assertEqual(range(100), input)
